@@ -12,18 +12,16 @@ Net::Libnet - Perl interface to libnet
 
 =head1 VERSION
 
-Version 0.01_02
+Version 0.01_03
 
 =cut
 
-our $VERSION = '0.01_02';
+our $VERSION = '0.01_03';
 our @ISA = qw(Exporter DynaLoader);
 
 our @EXPORT = qw (
     libnet_init
     libnet_error
-    get_hostname_from_ipaddr4
-    get_ip_from_ipaddr4
 
     LIBNET_LINK
     LIBNET_RAW4
@@ -83,12 +81,14 @@ calling libnet_error().
 
 This function returns a string containing the last error message generated.
 
-=head2 $ip_addr_string = get_ip_from_ipaddr4($ip_addr4)
+=head1 Net::Libnet::IPv4 FUNCTIONS
+
+=head2 $ip_addr_string = $ip->get_ip_addr()
 
 This function will return a dotted ip address as a string from byte-ordered
 IP address passed in.
 
-=head2 $ip_addr_string = get_hostname_from_ipaddr4($ip_addr4)
+=head2 $hostname_string = $ip->get_hostname()
 
 This function will return the hostname for the byte-ordered IP address passed
 in or the dotted ip address as a string if the hostname cannot be resolved.
@@ -106,10 +106,9 @@ hardware address (i.e. the MAC address) in separate entries in the array.  If
 errors occur during this function, the error can be retrieved using 
 libnet_error().
 
-=head2 my ip_addr4 = $l->get_ipaddr4
+=head2 my ip = $l->get_ipaddr4
 
-This method returns the byte-ordered IP address  for the 
-Net::Libnet::Libnet object.
+This method returns a Net::Libnet::IPv4 object.
 
 =head1 NOTES
 

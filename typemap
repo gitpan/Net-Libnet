@@ -1,1 +1,2 @@
 Net::Libnet::Libnet      T_PTROBJ
+Net::Libnet::IPv4        T_PTROBJ

@@ -1,4 +1,10 @@
 Revision history for Net-Libnet
+0.01_03 19-Oct-2004 19:40
+         Refactored IPv4 functions into Net::Libnet::IPv4.
+	 Split tests for IPv4 test out to separate file.
+	 Note:  IPv6 is not completely implemented in the current release
+	 of Libnet, so no work on IPv6 should be coming any time soon.
+
 0.01_02 18-Oct-2004 21:25
          Added functions for IPv4 resolution.
 
