@@ -12,16 +12,19 @@ Net::Libnet - Perl interface to libnet
 
 =head1 VERSION
 
-Version 0.01_01
+Version 0.01_02
 
 =cut
 
-our $VERSION = '0.01_01';
+our $VERSION = '0.01_02';
 our @ISA = qw(Exporter DynaLoader);
 
 our @EXPORT = qw (
     libnet_init
     libnet_error
+    get_hostname_from_ipaddr4
+    get_ip_from_ipaddr4
+
     LIBNET_LINK
     LIBNET_RAW4
     LIBNET_RAW6
@@ -55,9 +58,11 @@ routines to help with this.
 
     my $MACAddr = $l->get_hwaddr() || diag libnet_error();
 
-    # print the MAC Address
+    # print the MAC Address, IP Address, and Hostname
     printf "%2.2x:%2.2x:%2.2x:%2.2x:%2.2x:%2.2x\n", @$MACAddr;
-
+    my $addr = $l->get_ipaddr4() || die libnet_error();
+    print "IP Address:  " . get_ip_from_ipaddr4($addr);
+    print "Hostname:  " . get_hostname_from_ipaddr4($addr);
     ...
 
 =head1 EXPORT
@@ -78,6 +83,16 @@ calling libnet_error().
 
 This function returns a string containing the last error message generated.
 
+=head2 $ip_addr_string = get_ip_from_ipaddr4($ip_addr4)
+
+This function will return a dotted ip address as a string from byte-ordered
+IP address passed in.
+
+=head2 $ip_addr_string = get_hostname_from_ipaddr4($ip_addr4)
+
+This function will return the hostname for the byte-ordered IP address passed
+in or the dotted ip address as a string if the hostname cannot be resolved.
+
 =head1 Net::Libnet::Libnet FUNCTIONS
 
 =head2 $device = $l->getdevice()
@@ -90,6 +105,11 @@ This function returns an array reference containing the integer values for the
 hardware address (i.e. the MAC address) in separate entries in the array.  If 
 errors occur during this function, the error can be retrieved using 
 libnet_error().
+
+=head2 my ip_addr4 = $l->get_ipaddr4
+
+This method returns the byte-ordered IP address  for the 
+Net::Libnet::Libnet object.
 
 =head1 NOTES
 

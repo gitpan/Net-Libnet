@@ -29,6 +29,22 @@ CODE:
 OUTPUT:
     RETVAL
 
+char*
+get_ip_from_ipaddr4(addr)
+long addr;
+CODE:
+    RETVAL = libnet_addr2name4((u_int32_t)addr, LIBNET_DONT_RESOLVE);
+OUTPUT:
+    RETVAL
+
+char*
+get_hostname_from_ipaddr4(addr)
+long addr;
+CODE:
+    RETVAL = libnet_addr2name4((u_int32_t)addr, LIBNET_RESOLVE);
+OUTPUT:
+    RETVAL
+
 MODULE=Net::Libnet PACKAGE=Net::Libnet::Libnet PREFIX=Ctx_
 char*
 Ctx_getdevice(context)
@@ -54,6 +70,19 @@ CODE:
 	}    
     }
 
+    OUTPUT:
+        RETVAL
+
+SV*
+get_ipaddr4(context)
+Net::Libnet::Libnet context
+CODE:
+    long addr = libnet_get_ipaddr4(context);
+    if (-1 == addr) {
+        RETVAL = &PL_sv_undef;
+    } else {
+        RETVAL = newSViv(addr);
+    }	
     OUTPUT:
         RETVAL
 
