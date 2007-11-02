@@ -1,4 +1,10 @@
 Revision history for Net-Libnet
+0.01_04 02-Nov-2007 10:20
+         Improved constants handling using ExtUtils::Constant.
+         Added libnet_error() for finding errors returned from libnet_init().
+         TODO:
+            Skip tests when not running with a UID or EUID of 0.
+            Get onto building packets!
 0.01_03 19-Oct-2004 19:40
          Refactored IPv4 functions into Net::Libnet::IPv4.
 	 Split tests for IPv4 test out to separate file.
@@ -9,5 +15,5 @@ Revision history for Net-Libnet
          Added functions for IPv4 resolution.
 
 0.01_01 16-Oct-2004 14:46
-        First version, released on an unsuspecting world.
+         First version, released on an unsuspecting world.
 

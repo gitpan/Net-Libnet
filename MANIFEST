@@ -1,15 +1,16 @@
-.cvsignore
 Changes
+fallback/const-c.inc
+fallback/const-xs.inc
 lib/Net/Libnet.pm
 Libnet.xs
 Makefile.PL
-MANIFEST			This list of files
-META.yml			Module meta-data (added by MakeMaker)
+MANIFEST
 ppport.h
 README
 t/00.load.t
+t/constants.t
 t/ipv4.t
-t/pod-coverage.t
 t/pod.t
 t/test.t
 typemap
+META.yml                                 Module meta-data (added by MakeMaker)
